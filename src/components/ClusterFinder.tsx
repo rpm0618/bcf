@@ -43,13 +43,13 @@ export default (props: ClusterFinderProps) => {
 
     return (
         <div className="flex p-2">
-            <div className="flex flex-col p-4">
-                <label className="pb-1">
+            <div className="flex flex-col pr-8">
+                <label className="pb-2">
                     Cluster Target
                     <ChunkPosInput chunkPos={clusterTarget} onChunkChanged={setClusterTarget} />
                 </label>
                 <label className="pb-4">
-                    <span className="pr-1">Hashmap Size</span>
+                    <span className="block pb-1">Hashmap Size</span>
                     <select className="border border-black" value={Number(mask)} onChange={(e) => setMask(BigInt(e.target.value))}>
                         <option value={4095}>4096</option>
                         <option value={8191}>8192</option>
@@ -58,12 +58,12 @@ export default (props: ClusterFinderProps) => {
                 </label>
                 <label>
                     <span className="block pb-1">Current Cluster ({Object.keys(clusterChunks).length} chunks)</span>
-                    <textarea className="border border-black p-1" readOnly cols={30} rows={10} value={clusterString}/>
+                    <textarea className="border border-black p-1" readOnly cols={35} rows={10} value={clusterString}/>
                 </label>
                 <Button onClick={addInViewChunks}>Add chunks to cluster</Button>
                 <Button onClick={clearCluster}>Clear</Button>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col items-end">
                 <ChunkMap
                     width={512}
                     height={512}
@@ -73,7 +73,7 @@ export default (props: ClusterFinderProps) => {
                     mask={mask}
                     onClusterChunksChanged={setInViewClusterChunks}
                 />
-                <label className="pb-1">
+                <label className="pb-2 pt-2">
                     View Target
                     <ChunkPosInput chunkPos={viewTarget} onChunkChanged={setViewTarget} />
                 </label>
