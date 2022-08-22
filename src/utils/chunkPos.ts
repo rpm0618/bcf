@@ -23,6 +23,10 @@ class ChunkPos {
         return this.x === other.x && this.z === other.z;
     }
 
+    public toString() {
+        return `(${this.x}, ${this.z})`;
+    }
+
     public static asLong(x: bigint, z: bigint) {
         return BigInt.asIntN(64, (x & 4294967295n) | ((z & 4294967295n) << 32n));
     }

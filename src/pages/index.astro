@@ -6,27 +6,7 @@ import ChunkPos from '../utils/chunkPos';
 ---
 
 <Layout title="Cluster Chunk Finder">
-	<main>
-		<!-- <ChunkMap
-			height={512}
-			width={512}
-			viewTarget={ChunkPos.from(7123 - 500 + 5000,8439 + 500 + 5000)}
-			viewDistance={1000}
-			clusterTarget={ChunkPos.from(7123, 8439)}
-			mask={4095n}
-			client:load /> -->
+	<main class="mx-auto">
 			<ClusterFinder client:load />
 	</main>
 </Layout>
-
-<style>
-	:root {
-		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
-	}
-
-	main {
-		margin: auto;
-		padding: 1em;
-		max-width: 60ch;
-	}
-</style>

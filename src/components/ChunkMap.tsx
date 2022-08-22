@@ -9,6 +9,7 @@ export interface ChunkMapProps {
     viewDistance: number,
     clusterTarget: ChunkPos,
     mask: bigint,
+    onClusterChunksChanged: (clusterChunks: ChunkPos[]) => unknown
 };
 
 export default (props: ChunkMapProps) => {
@@ -18,7 +19,8 @@ export default (props: ChunkMapProps) => {
         viewTarget,
         viewDistance,
         clusterTarget,
-        mask
+        mask,
+        onClusterChunksChanged
     } = props;
 
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -39,6 +41,8 @@ export default (props: ChunkMapProps) => {
 
             const targetHash = ChunkPos.hash1_8(clusterTarget.x, clusterTarget.z, mask);
 
+            const clusterChunks: ChunkPos[] = [];
+
             for (let ox = 0; ox < chunksAcross; ox++) {
                 for (let oz = 0; oz < chunksHigh; oz++) {
                     const x = nwCorner.x + BigInt(ox);
@@ -46,19 +50,21 @@ export default (props: ChunkMapProps) => {
 
                     const chunkHash = ChunkPos.hash1_8(x, z, mask);
 
-                    if (chunkHash === targetHash) {
-                        context.fillStyle = "red";
-                        context.fillRect(ox * chunkWidth, oz * chunkHeight, chunkWidth, chunkHeight);
-                    }
                     if (x === clusterTarget.x && z === clusterTarget.z) {
                         context.fillStyle = "green";
+                        context.fillRect(ox * chunkWidth, oz * chunkHeight, chunkWidth, chunkHeight);
+                    } else if (chunkHash === targetHash) {
+                        clusterChunks.push(new ChunkPos(x, z));
+                        context.fillStyle = "red";
                         context.fillRect(ox * chunkWidth, oz * chunkHeight, chunkWidth, chunkHeight);
                     }
 
                 }
             }
-        }
-    }, [canvasRef, viewTarget])
 
-    return (<canvas ref={canvasRef} width={width} height={height} style={{"border": "1px solid black"}}></canvas>);
+            onClusterChunksChanged(clusterChunks);
+        }
+    }, [canvasRef, viewTarget, viewDistance, clusterTarget, mask])
+
+    return (<canvas ref={canvasRef} width={width} height={height} className="border border-black bg-white"></canvas>);
 }
