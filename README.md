@@ -1,12 +1,12 @@
 # Browser Cluster Finder
 
-https://rpm0618.github.io/bcf/
-
 ## What is this?
 A (very) WIP browser based cluster finder for creating delay in Minecraft threadstone related exploits. It currently targets Minecraft 1.8, but aims to eventually support all versions between 1.8 and 1.12.
 
 ## Quickstart
-Tested with node 16 on Chrome 104
+Try live at: https://rpm0618.github.io/bcf/
+
+To run locally (tested with node 16 and Chrome 104):
 
 1. `npm install`
 2. `npm run dev`
