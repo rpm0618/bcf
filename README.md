@@ -1,10 +1,10 @@
 # Browser Cluster Finder
 
 ## What is this?
-A (very) WIP browser based cluster finder for creating delay in Minecraft threadstone related exploits. It currently targets Minecraft 1.8, but aims to eventually support 1.12 as well.
+A (very) WIP browser based cluster finder for creating delay in Minecraft threadstone related exploits. It currently targets Minecraft 1.8, but aims to eventually support all versions between 1.8 and 1.12.
 
 ## Quickstart
-Tested with node 16 on Chrome
+Tested with node 16 on Chrome 104
 
 1. `npm install`
 2. `npm run dev`
@@ -17,6 +17,6 @@ Tested with node 16 on Chrome
 4. Continue adjusting the view and adding chunks to the cluster until satisfied.
 
 ## Working around the 1.8 Hash Function
-I'm not an expert at these things, but it appears to me that the 1.8 hash function is capital B Bad. There are very obvious patterns present, and chunks with the same hash will often be grouped close together geographically. The result is that **for a given cluster target chunk and a random (but reasonable) viewing target and distance, there's a decent chance there will be no candidate cluster chunks.**
+While I have no experience analyzing or designing hash functions, it seems obvious to me that the 1.8 chunk hashmap seems to use a particularly bad one. Specifically, it does a terrible job of distributing chunks, so you end up with naturally occuring groups of chunks with the same hash. This will likely turn out to be handy for building in survival, but does come with a drawback. You can't create a cluster anywhere you want, you have to use one of these groups. **Given a random cluster target and search area (view target and view range), you will in general NOT find any candidate chunks.**
 
-One way to find candidate chunks is to start looking around the cluster target. It appears there will always be a number of chunks with the same hash around the target chunk, and there will also be repeating patterns of candidate chunks on the diagonals from that location.
+One way to find candidate chunks is to start by looking around the cluster target, specificaly on the diagonals. It appears that there are always groups relatively close (a few hundred chunks apart) diagonally away from each other, although the spacing and shape may vary.
