@@ -5,5 +5,7 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://rpm0618.github.io",
+  base: "/bcf",
   integrations: [react(), tailwind()]
 });
