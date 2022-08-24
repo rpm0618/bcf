@@ -75,6 +75,7 @@ export default (props: ClusterFinderProps) => {
                 </label>
                 <Button onClick={addInViewChunks}>Add chunks to cluster</Button>
                 <Button onClick={() => saveToCsv(clusterChunks)}>Save to CSV</Button>
+                <a className="underline cursor-pointer" href="https://github.com/rpm0618/bcf" target="_blank">Source Code</a>
             </div>
             <div className="flex flex-col items-end">
                 <ChunkMap
