@@ -22,3 +22,6 @@ To run locally (tested with node 16 and Chrome 104):
 While I have no experience analyzing or designing hash functions, it seems obvious to me that the 1.8 chunk hashmap seems to use a particularly bad one. Specifically, it does a terrible job of distributing chunks, so you end up with naturally occuring groups of chunks with the same hash. This will likely turn out to be handy for building in survival, but does come with a drawback. You can't create a cluster anywhere you want, you have to use one of these groups. **Given a random cluster target and search area (view target and view range), you will in general NOT find any candidate chunks.**
 
 One way to find candidate chunks is to start by looking around the cluster target, specificaly on the diagonals. It appears that there are always groups relatively close (a few hundred chunks apart) diagonally away from each other, although the spacing and shape may vary.
+
+## Load order
+In 1.8, to cause delay accessing the cluster target the cluster target chunk needs to be loaded first, followed by all of the cluster chunks. This is opposite of 1.12, where the cluster needs to eb loaded first.
